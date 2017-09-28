@@ -8,17 +8,17 @@ Both approaches have been tested on an Apache Hadoop cluster on Amazon EC2 cloud
 ## Setting up MR-BWA on Hadoop
 It is assumed that an Apache Hadoop Cluster has already been setup
 1. Apache Hadoop Cluster configuration is updated to have specific memory assigned:
--- yarn-site.xml
---- ```yarn.log-aggregation-enable=true```
---- ```yarn.nodemanager.pmem-check-enabled=false```
---- ```yarn.nodemanager.vmem-check-enabled=false```
---- ```yarn.nodemanager.resource.memory-mb=12288```
---- ```yarn.scheduler.maximum-allocation-mb=12288```
--- mapred-site.xml
---- ```mapreduce.map.memory.mb=12288```
---- ```mapreduce.reduce.memory.mb=12288```
---- ```mapreduce.map.java.opts=-Xmx12288M -Djava.net.preferIPv4Stack=true -XX:NewRatio=8 -XX:+UseNUMA -XX:+UseParallelGC```
---- ```mapreduce.reduce.java.opts=-Xmx12288M -Djava.net.preferIPv4Stack=true -XX:NewRatio=8 -XX:+UseNUMA -XX:+UseParallelGC```
+   -- yarn-site.xml
+       --- ```yarn.log-aggregation-enable=true```
+       --- ```yarn.nodemanager.pmem-check-enabled=false```
+       --- ```yarn.nodemanager.vmem-check-enabled=false```
+       --- ```yarn.nodemanager.resource.memory-mb=12288```
+       --- ```yarn.scheduler.maximum-allocation-mb=12288```
+   -- mapred-site.xml
+       --- ```mapreduce.map.memory.mb=12288```
+       --- ```mapreduce.reduce.memory.mb=12288```
+       --- ```mapreduce.map.java.opts=-Xmx12288M -Djava.net.preferIPv4Stack=true -XX:NewRatio=8 -XX:+UseNUMA -XX:+UseParallelGC```
+       --- ```mapreduce.reduce.java.opts=-Xmx12288M -Djava.net.preferIPv4Stack=true -XX:NewRatio=8 -XX:+UseNUMA -XX:+UseParallelGC```
 2. Upload and run the provided ```setup_biotools.sh, hd biotools.sh``` on each node. These scripts will install and setup Python, BWA and SAM tools. Any extra Python dependencies are also installed.
 3. Upload the provided ```hadoop-streaming-2.6.5.jar``` on the master node and copy it to the *$HADOOP_HOME* folder.
 4. Upload all the provided Python scripts in *mr-bwa* folder to the master node
@@ -94,7 +94,7 @@ This provides an overview of the *output analysis.R* that is used to analyze the
 3. Run the command
 ```source(’output_analysis.R’)```
 4. This will take some time to finish. When it’s done, it will create four bar charts based on the input tsv file:
--- *alignment_dist*: This shows the alignment operations distribution. The result shows base pairs count of matches, variations, insertions, deletions.
--- *variations_per_chromosome*: This shows the variations base pairs count grouped by chromosome.
--- *insertions_per_chromosome*: This shows the insertions base pairs count grouped by chromosome.
--- *deletions_per_chromosome*: This shows the deletions base pairs count grouped by chromosome.
+   -- *alignment_dist*: This shows the alignment operations distribution. The result shows base pairs count of matches, variations, insertions, deletions.
+   -- *variations_per_chromosome*: This shows the variations base pairs count grouped by chromosome.
+   -- *insertions_per_chromosome*: This shows the insertions base pairs count grouped by chromosome.
+   -- *deletions_per_chromosome*: This shows the deletions base pairs count grouped by chromosome.
