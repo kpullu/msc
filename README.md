@@ -9,16 +9,16 @@ Both approaches have been tested on an Apache Hadoop cluster on Amazon EC2 cloud
 It is assumed that an Apache Hadoop Cluster has already been setup
 1. Apache Hadoop Cluster configuration is updated to have specific memory assigned:
    -- yarn-site.xml
-       --- ```yarn.log-aggregation-enable=true```
-       --- ```yarn.nodemanager.pmem-check-enabled=false```
-       --- ```yarn.nodemanager.vmem-check-enabled=false```
-       --- ```yarn.nodemanager.resource.memory-mb=12288```
-       --- ```yarn.scheduler.maximum-allocation-mb=12288```
+      --- ```yarn.log-aggregation-enable=true```
+      --- ```yarn.nodemanager.pmem-check-enabled=false```
+      --- ```yarn.nodemanager.vmem-check-enabled=false```
+      --- ```yarn.nodemanager.resource.memory-mb=12288```
+      --- ```yarn.scheduler.maximum-allocation-mb=12288```
    -- mapred-site.xml
-       --- ```mapreduce.map.memory.mb=12288```
-       --- ```mapreduce.reduce.memory.mb=12288```
-       --- ```mapreduce.map.java.opts=-Xmx12288M -Djava.net.preferIPv4Stack=true -XX:NewRatio=8 -XX:+UseNUMA -XX:+UseParallelGC```
-       --- ```mapreduce.reduce.java.opts=-Xmx12288M -Djava.net.preferIPv4Stack=true -XX:NewRatio=8 -XX:+UseNUMA -XX:+UseParallelGC```
+      --- ```mapreduce.map.memory.mb=12288```
+      --- ```mapreduce.reduce.memory.mb=12288```
+      --- ```mapreduce.map.java.opts=-Xmx12288M -Djava.net.preferIPv4Stack=true -XX:NewRatio=8 -XX:+UseNUMA -XX:+UseParallelGC```
+      --- ```mapreduce.reduce.java.opts=-Xmx12288M -Djava.net.preferIPv4Stack=true -XX:NewRatio=8 -XX:+UseNUMA -XX:+UseParallelGC```
 2. Upload and run the provided ```setup_biotools.sh, hd biotools.sh``` on each node. These scripts will install and setup Python, BWA and SAM tools. Any extra Python dependencies are also installed.
 3. Upload the provided ```hadoop-streaming-2.6.5.jar``` on the master node and copy it to the *$HADOOP_HOME* folder.
 4. Upload all the provided Python scripts in *mr-bwa* folder to the master node
@@ -87,7 +87,7 @@ yarn jar $HADOOP_HOME/hadoop-streaming-2.6.5.jar
 8. Copy tsv output from HDFS to master node using command
 ```hdfs dfs -copyToLocal /user/karl/mrbwtfm/output/alignment/part-00000 .```
 
-### Output Analysis
+## Output Analysis
 This provides an overview of the *output analysis.R* that is used to analyze the MapReduce output. The machine used to run this script should have [R](https://cran.r-project.org/doc/manuals/R-admin.html) installed. Running this script is straightforward:
 1. Copy MapReduce output tsv file to some location on the laptop. *output analysis.R* assumes that output tsv file is called *mrbwa output.tsv*, however this can be easily changed.
 2. Open laptop terminal and type R. R terminal should load up.
