@@ -66,8 +66,8 @@ It is assumed that an Apache Hadoop Cluster has already been setup and steps 1, 
 2. Copy the uploaded Python scripts to *app_mrbwtfm* folder on the master node.
 3. Assuming that human reference genome has already been downloaded in */data/index* folder on master node, the custom FM-Index is created by running 
 ```build_index.py <input_file> hg38_idx```
-4. Once the index creation has finished, the hg38 idx index file is copied to */data/index* folder on all data nodes
-5. Preprocess the FASTQ files downloaded in step 9 of  **MR-BWA** setup, into the custom MapReduce format by running the provided script ```parse_fq_file.py <input_file.fastq>```
+4. Once the index creation has finished, the *hg38_idx* index file is copied to */data/index* folder on all data nodes
+5. Preprocess the FASTQ files downloaded in step 9 of **MR-BWA** setup, into the custom MapReduce format by running the provided script ```parse_fq_file.py <input_file.fastq>```
 The output of this command is a text file called *output.fq.reads*
 6. Upload the custom preprocessed FASTQ files to HDFS by running the command
 ```sh
@@ -89,7 +89,7 @@ yarn jar $HADOOP_HOME/hadoop-streaming-2.6.5.jar
 
 ## Output Analysis
 This provides an overview of the *output analysis.R* that is used to analyze the MapReduce output. The machine used to run this script should have [R](https://cran.r-project.org/doc/manuals/R-admin.html) installed. Running this script is straightforward:
-1. Copy MapReduce output tsv file to some location on the laptop. *output analysis.R* assumes that output tsv file is called *mrbwa output.tsv*, however this can be easily changed.
+1. Copy MapReduce output tsv file to some location on the laptop. *output_analysis.R* assumes that output tsv file is called *mrbwa_output.tsv*, however this can be easily changed.
 2. Open laptop terminal and type R. R terminal should load up.
 3. Run the command
 ```source(’output_analysis.R’)```
