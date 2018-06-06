@@ -1,4 +1,4 @@
-# A MapReduce approach to Genome Alignment
+# A MapReduce Approach to Genome Alignment
 This MSc dissertation presents two approaches to perform distributed sequence alignment of genomic data based on the MapReduce programming paradigm. 
 - **MR-BWA** presents an approach in distributing BWA using MapReduce. [BWA](http://bio-bwa.sourceforge.net/) is an industry standard software used for genomic reads alignment.
 - **MR-BWT-FM** presents low level optimizations on suffix array and BWT creation which are used to create a custom FM-Index which in turn is used for distributed genome sequence alignment.
